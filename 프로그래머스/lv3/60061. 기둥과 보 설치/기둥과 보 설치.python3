@@ -1,0 +1,33 @@
+def check(build):
+    for gi_x,gi_y in build[0]:
+        if gi_y == 0 or (gi_x,gi_y) in build[1] or (gi_x-1,gi_y) in build[1] or (gi_x,gi_y-1) in build[0]:
+            continue
+        else:
+            return True
+    for bo_x,bo_y in build[1]:
+        if (bo_x,bo_y-1) in build[0] or (bo_x+1,bo_y-1) in build[0] or ((bo_x-1,bo_y) in build[1] and (bo_x+1,bo_y) in build[1]):
+            continue
+        else:
+            return True
+    return False
+
+def getKey(arr) :
+    return arr
+
+def solution(n, build_frame):
+    answer = []
+    build = [[],[]] 
+    for x,y,a,b in build_frame:
+        if b == 1:
+            build[a].append((x,y))
+            if check(build):
+                build[a].remove((x,y))
+        else:
+            build[a].remove((x,y))
+            if check(build):
+                build[a].append((x,y))
+    for i in range(2):
+        for x,y in build[i]:
+            answer.append([x,y,i])
+    answer.sort(key=getKey)
+    return answer
