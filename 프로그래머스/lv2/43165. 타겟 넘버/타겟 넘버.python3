@@ -1,0 +1,11 @@
+from itertools import combinations
+
+def solution(numbers, target):
+    answer = 0
+    all_sum = sum(numbers)
+    for i in range(len(numbers)):
+        arrs = list(combinations(numbers, i))
+        for arr in arrs:
+            if (all_sum - 2 * sum(arr)) == target:
+                answer += 1
+    return answer
