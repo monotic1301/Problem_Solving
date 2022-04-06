@@ -1,0 +1,17 @@
+def solution(n, computers):
+    answer = 0
+    visit_b = [False] * n
+    visit = []
+    s = 0
+    for i in range(n):
+        if not visit_b[i]:
+            answer += 1
+            visit.append(i)
+            visit_b[i] = True
+            while len(visit):
+                a = visit.pop(0)
+                for j in range(n):
+                    if computers[a][j] == 1 and visit_b[j] == False:
+                        visit.append(j)
+                        visit_b[j] = True
+    return answer
