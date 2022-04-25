@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit(100000)
+sys.setrecursionlimit(1011)
 def find(num,room):
     if num not in room:
         room[num] = num +1
