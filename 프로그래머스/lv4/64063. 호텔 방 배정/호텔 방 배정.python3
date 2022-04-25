@@ -1,0 +1,18 @@
+import sys
+sys.setrecursionlimit(100000)
+def find(num,room):
+    if num not in room:
+        room[num] = num +1
+        return num
+    p = find(room[num],room)
+    room[num] = p + 1
+    return p
+
+
+def solution(k, room_number):
+    answer = []
+    room = dict()
+    for num in room_number:
+        empty = find(num,room)
+        answer.append(empty)
+    return answer
