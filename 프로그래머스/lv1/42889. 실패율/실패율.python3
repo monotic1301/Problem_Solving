@@ -1,0 +1,17 @@
+def solution(N, stages):
+    answer = []
+    players = len(stages)
+    temp = []
+    for i in range(1,N+1):
+        f = stages.count(i)
+        if f == 0:
+            temp.append((i,0))
+        else:
+            temp.append((i,f/players))
+        players -= f
+    temp.sort(key =lambda x:(-x[1]))
+    print(temp)
+    for i in temp:
+        idx,_ = i
+        answer.append(idx)
+    return answer
